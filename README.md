@@ -42,9 +42,9 @@ Purpose of This Repository
 - [Authentication Flow](docs/auth-flow.md)
 - [Soft Delete Notes](docs/soft-delete.md)
 - [Git Notes](docs/git-notes.md)
--[API Notes and Flow](docs/api.md)
--[Queue](docs/queue.md)
--[crud](docs/crud.md)
+- [API Notes and Flow](docs/api.md)
+- [Queue](docs/queue.md)
+- [crud](docs/crud.md)
 
 ⸻
 
