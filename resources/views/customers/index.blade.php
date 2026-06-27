@@ -28,6 +28,7 @@
                 <th>IMAGE</th>
                 <th>SHOW</th>
                 <th>EDIT</th>
+                <th>SHOW DELETED</th>
                 <th>DELETE</th>
             </tr>
             @foreach ($customer as $c)
@@ -53,6 +54,11 @@
                     <td>
                         <a class="btn btn-info" href="{{ route('customers.edit' , $c->id) }}" role="button">EDIT</a>
                     </td>
+
+                    <td>
+                        <a class="btn btn-secondary" href="{{ route('customers.restore' , $c->id) }}" role="button">SHOW DELETED</a>
+                    </td>
+
 
                     <td>
                  <form  action="{{ route('customers.destroy' , $c->id) }}" method="POST"> 

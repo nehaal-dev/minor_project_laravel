@@ -101,4 +101,12 @@ class CustomerController extends Controller
         $customer->delete();
         return redirect()->route('customers.index')->with('sucess', 'Customer Data Deleted Successfully');
     }
+
+    public function restore(Customer $customer){
+        $customer->get('deleated_at');
+
+
+    }
+
+
 }
