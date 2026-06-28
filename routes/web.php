@@ -18,4 +18,6 @@ Route::put('/customer/{customer}', [CustomerController::class, 'update'])->name(
 
 Route::delete('/customer/{customer}', [CustomerController::class, 'destroy'])->name('customers.destroy');
 
-Route::get('/customer/{customer}/restore' , [CustomerController::class ,'restore'])->name('customers.restore');
+Route::get('/customer/{id}/restore' , [CustomerController::class ,'restore'])->name('customers.restore');
+
+Route::get('/customers/deleted' , [CustomerController::class , 'trashed'])->name('customers.trashed');

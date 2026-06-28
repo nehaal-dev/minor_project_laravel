@@ -102,11 +102,19 @@ class CustomerController extends Controller
         return redirect()->route('customers.index')->with('sucess', 'Customer Data Deleted Successfully');
     }
 
-    public function restore(Customer $customer){
-        $customer->get('deleated_at');
+    public function restore($id){
+        $customer=Customer::onlyTrashed()->findOrFail($id);
+        $customer->restore();
+
+        return redirect()->route('customers.index')->with('success' , 'data restored');
 
 
     }
 
+    public function trashed()
+    {
+        $deletedCustomers = Customer::onlyTrashed()->get();
+        return view('customers.trashed', compact('deletedCustomers'));
+    }
 
 }

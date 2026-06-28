@@ -19,13 +19,12 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <h1 class="text-center mt-5">Customer Table</h1>
+                        <h1 class="text-center mt-5">Deleted Customer Table</h1>
                     </div>
                     <div class="card-body">
                         <div class="d-flex justify-content-between mb-3 mx-3">
-                            <a href="{{ route('customers.create') }}" class="btn btn-primary">Create Customer</a>
-                            <a href="{{ route('customers.trashed') }}" class="btn btn-warning">View Deleted
-                                Customers</a>
+                            <a href="{{ route('customers.index') }}" class="btn btn-danger">Cancel</a>
+                            
                         </div>
                         <table class="table table-light">
                             <tbody>
@@ -36,11 +35,11 @@
                                     <th>PAYMENT</th>
                                     <th>COUNTRY</th>
                                     <th>IMAGE</th>
-                                    <th>SHOW</th>
-                                    <th>EDIT</th>
-                                    <th>DELETE</th>
+                                    <th>DELETED ON</th>
+                                    <th>RESTORE</th>
+                             
                                 </tr>
-                                @foreach ($customer as $c)
+                                @foreach ($deletedCustomers as $c)
                                     <tr>
                                         <td>{{ $c->id }}</td>
                                         <td>{{ $c->name }}</td>
@@ -57,24 +56,13 @@
                                                 height=90>
                                         </td>
 
-                                        <td>
-                                            <a class="btn btn-primary" href="{{ route('customers.show', $c->id) }}"
-                                                role="button">SHOW</a>
-                                        </td>
+                                        <td>{{ $c->deleted_at->format('d-m-Y h:i A') }}</td>
 
                                         <td>
-                                            <a class="btn btn-info" href="{{ route('customers.edit', $c->id) }}"
-                                                role="button">EDIT</a>
+                                            <a class="btn btn-success" href="{{ route('customers.restore', $c->id) }}"
+                                                role="button">Restore</a>
                                         </td>
-                                        <td>
-                                            <form action="{{ route('customers.destroy', $c->id) }}" method="POST">
-                                                @method('DELETE')
-                                                @csrf
-                                                <button class="btn btn-danger">DELETE</button>
-
-                                            </form>
-
-                                        </td>
+                                       
                                     </tr>
                                 @endforeach
                             </tbody>
