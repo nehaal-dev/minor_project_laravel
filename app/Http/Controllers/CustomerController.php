@@ -111,5 +111,10 @@ class CustomerController extends Controller
 
     }
 
+    public function trashed()
+    {
+        $deletedCustomers = Customer::onlyTrashed()->get();
+        return view('customers.trashed', compact('deletedCustomers'));
+    }
 
 }
