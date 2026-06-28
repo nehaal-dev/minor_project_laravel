@@ -1,16 +1,18 @@
 # Soft Delete in Laravel
 
 ### Hard Delete:
+
 $customer->delete();
-→ Row database se PERMANENTLY gone
-→ Wapas nahi mil sakta
+- Row database se PERMANENTLY gone
+- Wapas nahi mil sakta
 
 ### Soft Delete:
+
 $customer->delete();
-→ Row database mein rehta hai
-→ Sirf 'deleted_at' column mein timestamp set ho jaata hai
-→ Query automatically is row ko hide kar deta hai
-→ Wapas la sakte ho restore() se
+- Row database mein rehta hai
+- Sirf 'deleted_at' column mein timestamp set ho jaata hai
+- Query automatically is row ko hide kar deta hai
+- Wapas la sakte ho restore() se
 
 Real World Use Case
 Hard delete  → Spam comment, temporary data

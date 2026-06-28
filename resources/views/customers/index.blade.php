@@ -16,6 +16,14 @@
 <body>
     <h1 class="text-center mt-5">Customer Table</h1>
 
+ <div class="d-flex justify content-center mt-2 mb-2"> 
+    <a  href="{{ route('customers.create') }}" class="btn btn-warning">Create Customers </a>
+    
+
+</div>
+
+
+
 
     <table class="table table-light">
         <tbody>
