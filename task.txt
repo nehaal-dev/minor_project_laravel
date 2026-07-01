@@ -1,0 +1,71 @@
+
+📋 Mera Plan For You — 4-Week Structured Drill
+Main tujhe ek structured battle plan de raha hoon. Koi shortcut nahi. Roz ek task, bina copy-paste ke.
+
+⚔️ WEEK 1 — CRUD From Absolute Scratch (No Shortcuts)
+Daily Rule: Blank Laravel project, no copy paste, timer on (45 min max).
+
+Day 1 — Basic CRUD (Blog Posts)
+Tables: posts (id, title, body, status, timestamps)
+Routes: Resource controller
+Task: Full CRUD with validation, no JS
+Day 2 — CRUD + Soft Delete
+Same posts table + deleted_at column
+Add: SoftDeletes trait, restore functionality
+Interview Q: "Soft delete vs hard delete kya fark hai?"
+Day 3 — CRUD + File Upload
+Table: products (id, name, price, image, timestamps)
+Task: Image upload, store in storage/public, delete old image on update
+Day 4 — CRUD + Search + Pagination
+Same products
+Add: Search by name (LIKE query), paginate(10)
+Interview Q: "paginate() vs simplePaginate() difference?"
+Day 5 — REST API CRUD (JSON only, no Blade)
+Resource: /api/tasks
+Auth: none (just practice structure)
+Must have: FormRequest validation, API Resources, proper HTTP codes
+
+⚔️ WEEK 2 — Relationships (Most Asked in Interviews)
+Relationships cover: One-to-One, One-to-Many, Many-to-Many, Polymorphic — ye sab Eloquent mein methods ke through define hote hain model class mein. GitHub
+Day 1 — hasOne / belongsTo
+Users → Profile (one-to-one)
+Task: Create user with profile, show profile data via relationship
+Interview Q: "hasOne aur belongsTo mein kya difference hai logically?"
+Day 2 — hasMany / belongsTo
+Category → Posts (one-to-many)
+Task: Show all posts of a category, eager load with with()
+Interview Q: "N+1 problem kya hota hai? Kaise fix karte hain?"
+Day 3 — Many-to-Many
+Posts ↔ Tags (pivot table: post_tag)
+Task: attach(), detach(), sync() — teen methods practice
+Interview Q: "sync() aur attach() mein kya fark hai?"
+Day 4 — Nested Relationships + Eager Loading
+User → Orders → OrderItems → Products
+Task: Ek query mein sab load karo, no N+1
+Day 5 — Query Scopes
+Local scope: Post::published()->get()
+Global scope: Always exclude deleted
+Interview Q: "Local vs Global scope kab use karte hain?"
+
+⚔️ WEEK 3 — Routes, Middleware, Auth
+Day 1 — Route Types
+Practice: Route::get, post, put, delete
+Resource routes + only/except
+Route groups with prefix and name
+Route::apiResource vs Route::resource fark
+Day 2 — Custom Middleware
+Task: Middleware banao jo check kare ki user ka account "active" hai
+Apply it on specific routes only
+Middleware Laravel mein HTTP requests ka filter hai — authentication check karna, logging, ya request modify karna controller se pehle. Hirist
+Day 3 — Auth (Session-based)
+Scratch se: Register, Login, Logout
+No Breeze/Jetstream — khud likho
+Use Auth facade manually
+Day 4 — Sanctum API Auth
+Tu already Invoice Portal mein use kar chuka hai
+But ab karo WITHOUT looking at old code
+Task: Login → token → protected route → logout
+Day 5 — FormRequest + Validation
+Make:request use karo (NOT inline $request->validate)
+Custom error messages
+Conditional validation (sometimes rule)
