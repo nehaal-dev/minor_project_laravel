@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/customer',  [CustomerController::class, 'index'])->name('customers.index');
 
+Route::get('/customer/search' , [CustomerController::class , 'search'])->name('customers.search');
+
 Route::get('/customer/create', [CustomerController::class, 'create'])->name('customers.create');
 
 Route::post('/customer', [CustomerController::class, 'store'])->name('customers.store');
@@ -20,4 +22,6 @@ Route::delete('/customer/{customer}', [CustomerController::class, 'destroy'])->n
 
 Route::get('/customer/{id}/restore' , [CustomerController::class ,'restore'])->name('customers.restore');
 
-Route::get('/customers/deleted' , [CustomerController::class , 'trashed'])->name('customers.trashed');
+Route::get('/customer/deleted' , [CustomerController::class , 'trashed'])->name('customers.trashed');
+
+ 
