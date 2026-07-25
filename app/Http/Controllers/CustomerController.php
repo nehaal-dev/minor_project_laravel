@@ -13,7 +13,7 @@ class CustomerController extends Controller
     public function index()
     {
 
-        $customer = Customer::all();
+        $customer = Customer::paginate(5);
         return view('customers.index', compact('customer'));
     }
 
@@ -76,16 +76,16 @@ class CustomerController extends Controller
             'gender' => $request->gender,
             'payment' => $request->payment,
             'country' => $request->country,
-             
+
         ];
 
-        if($request->hasFile('image')) {
+        if ($request->hasFile('image')) {
 
             Storage::disk('public')->delete($customer->image);
             $path = $request->file('image')->store('picture', 'public');
-            $data['image']= $path;
+            $data['image'] = $path;
         }
- 
+
 
         $customer->update($data);
 
@@ -102,13 +102,12 @@ class CustomerController extends Controller
         return redirect()->route('customers.index')->with('sucess', 'Customer Data Deleted Successfully');
     }
 
-    public function restore($id){
-        $customer=Customer::onlyTrashed()->findOrFail($id);
+    public function restore($id)
+    {
+        $customer = Customer::onlyTrashed()->findOrFail($id);
         $customer->restore();
 
-        return redirect()->route('customers.index')->with('success' , 'data restored');
-
-
+        return redirect()->route('customers.index')->with('success', 'data restored');
     }
 
     public function trashed()
@@ -117,4 +116,35 @@ class CustomerController extends Controller
         return view('customers.trashed', compact('deletedCustomers'));
     }
 
+
+    public function search(Request $request)
+    {
+
+        $search_data = trim($request->search);
+        if ($search_data !== '') {
+            //dd($request->search);
+                 
+            $paymentMap = [
+                'cash' => 'Cash',
+                'card' => 'Card',
+                'upi'  => 'UPI',
+                'cheque' =>'Cheque'
+            ];
+            
+            $payment = $paymentMap[strtolower($search_data)] ?? $search_data;
+            $customer = Customer::where('id', 'LIKE', '%' . $search_data . '%')
+                ->orWhere('name', 'LIKE', '%' . $search_data . '%')
+               
+                ->orWhere('gender', $search_data )
+                ->orWhereJsonContains('payment', $payment)
+                ->orWhere('country', 'LIKE', '%' . $search_data . '%')
+                //->get()
+                ->paginate(5);  
+                // dd($customer->count());          
+            return view('customers.index', compact('customer'));
+        } else {
+            return redirect()->route('customers.index')
+            ->with('error','please enter search input');
+        }
+    }
 }
