@@ -134,7 +134,8 @@ class CustomerController extends Controller
             $payment = $paymentMap[strtolower($search_data)] ?? $search_data;
             $customer = Customer::where('id', 'LIKE', '%' . $search_data . '%')
                 ->orWhere('name', 'LIKE', '%' . $search_data . '%')
-                ->orWhere('gender', 'LIKE', '%' . $search_data . '%')
+               
+                ->orWhere('gender', $search_data )
                 ->orWhereJsonContains('payment', $payment)
                 ->orWhere('country', 'LIKE', '%' . $search_data . '%')
                 //->get()
